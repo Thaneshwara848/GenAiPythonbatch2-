@@ -1,0 +1,14 @@
+ 		Software Links 
+
+		
+Python : https://www.python.org/downloads/release/python-3147/						 
+
+MYSQL : https://dev.mysql.com/downloads/installer/				 
+
+POSTMAN : https://www.postman.com/downloads/					 
+
+NODE JS : https://nodejs.org/en/download					 
+
+VS CODE :  https://code.visualstudio.com/download	
+
+GIT bash : https://git-scm.com/install/windows	
