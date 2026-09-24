@@ -1,0 +1,7 @@
+print
+input 
+--------------
+baiscs prgrams using if , else  elif ..! , for , while , 
+Operators : and , or , not , in , etc....!
+Arethimita  :  + , - , / , * 
+
