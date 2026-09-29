@@ -1,4 +1,5 @@
-shopping_list = []  # this is EMpty list , Dup : yes 
+shopping_list = [] # this is EMpty list , Dup : yes
+
 while True:
     print("\n===== SHOPPING LIST MENU =====")
     print("1. Add Item")

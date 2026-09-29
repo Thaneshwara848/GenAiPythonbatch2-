@@ -6,11 +6,12 @@ class Employee :
     
     def detailes(self) :
         print("Fill The Emp Detailes ")
+        #each function : even or odd 
     
     def workingtime(self) :
             print(" FIll Your TIme Sheet  ")
    
-
+    
 hello();
 
 e1 = Employee(); 

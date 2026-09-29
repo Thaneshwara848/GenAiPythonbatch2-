@@ -4,18 +4,21 @@ input
 baiscs prgrams using if , else  elif ..! , for , while , 
 Operators : and , or , not , in , etc....!
 Arethimita  :  + , - , / , *  ;:
+
+class & objects : 
+Self 
+methods 
+funcation 
+
 Data types: 
 		int 
 		str 
-		LIST , SET , tuple , Dict 
+		float 
+		LIST ,	: DS : it will allow the dup but it can be mofidy  , order is user enter order  : [] 
+		SET ,	: DS : it wil not allow the  dup , order is mixed : {}
+		Tuple , : DS : it will allow the dup : but it can not modify  , order is user enter order  : ()
+		Dict 	: key - value 
+		
 		
 
-		name=input
-		10 names : 
-		[name1, name2, name3,name4,name5,name6]:
-		use array : 
-				name : dup ....!
-							yes LIST : yes it will allow the duplicate 
-				aadar : pan . phone/ passno 
-					dup? 
-							no : SET : wil not allow the duplaicate 
+	
