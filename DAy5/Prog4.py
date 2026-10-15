@@ -18,7 +18,7 @@ s1.display();
 
 #s1.display();
 print("============")
-s2 = Student(course="JAVA",age=40,name="Rahul");
+s2 = Student(course="Web",age=60,name="Sachin");
 s2.display();
 #s2.display();
 

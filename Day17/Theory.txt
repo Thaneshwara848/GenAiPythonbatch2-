@@ -1,0 +1,15 @@
+
+
+
+Dev ---> AI---> ML---> DL ----> Gen AI---->Agentic AI
+
+	Dev(FullStack) ----Test ----Deploy(Cloud)----->	
+					 AWS  (s3, ec2, rds)1000 
+						INDIA--->
+							
+					 Azure
+					  GCP 
+
+FACEBOOK---->
+Amezon------>
+		Cloud 
