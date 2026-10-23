@@ -1,0 +1,206 @@
+Prompt Engineering		-----------------------> Role + Contact + task  + constraints  + output  + format + examples 
+			Types :
+				zero shot prompting				----->   NO Examples 
+				one shot prompting                              ----->   Exactly one Example provide 
+				few shot prompting				----->   Multiple example 
+				role based prompting				----->   We assign a Role  
+				Step by Step prompting				----->   Explain step by Step
+				Chain of Thought prompting
+				Contextual prompting 
+				Instruction based prompting
+				Output based prompting
+				negative prompting
+
+Prompt Engineering :
+	it is process of Designing and improving instruction (prompt) to get 
+		ACCURATE , RELEVENT , USEFULL , EFFICTIVE answer from AI models
+
+	Giving the CLEAR instruction to a AI to GET the DESIRED Output  
+
+
+Types :
+	Zero shot prompting :  NO Examples 
+		we expect the solution without giving any Examples 
+
+		Ex : 
+			What is Python ? 
+			translate Good Morning into kannada 
+			Python program to check wither a number is even or odd 
+			suggest five useful gifts for my Dad   within 5000 
+			
+			
+
+		AI Response : 
+			 	positive 
+
+		key point : 
+			zero Ex are provided 
+			only the task or instruction is given 
+			The AI use its pre trained knowledge 
+
+
+
+
+
+	one Shot  :  exactly one Example provide 
+			Apple is Fruit 
+			banana ? 
+
+
+			Carrot -> veg then potato is ? 
+			Dog - > animal , cat-- ? 
+			india-- > New Delhi , JAPAN -- > Tokyo 
+
+			calculation .....!
+
+
+
+--------------------------------------
+Zero-Shot: Just ask.
+		print hello World 
+		print("hello World ")
+
+
+		take some array number and fin the max 
+
+		number= [10,20,30,40,50 ]
+		print(max(number));
+
+		
+	
+One-Shot: Show one example, then ask.
+
+	
+Few-Shot: Show multiple examples, then ask.
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------
+role based prompting
+
+		we are assign the role to AI 
+			base on The ROLE , --- >answer 
+
+
+	Role + task  + context = Response 
+
+
+	
+---------------------------------------------------
+
+
+Step by Step prompting
+
+---------------------------------------------------------------------------------------------------------------
+
+ Role + Contact + task  + constraints  + output  + format + examples = GOOD PROMPT
+
+			
+Types :
+				zero shot prompting				----->   NO Examples 			-----> Response 
+				one shot prompting                              ----->   Exactly one Example provide    -----> Response
+				few shot prompting				----->   Multiple "Example "		-----> Response
+				role based prompting				----->   We assign a "Role "  		-----> Response
+				Step by Step prompting				----->   Explain "Step by Step"		-----> Response
+				Chain of Thought prompting			
+				Contextual prompting 
+				Instruction based prompting
+				Output based prompting
+				negative prompting
+
+
+Prompting Type	One-Line Explanation
+1. Zero-Shot Prompting		: No examples provided → AI generates a response.
+2. One-Shot Prompting		: Exactly one example provided → AI follows the example.
+3. Few-Shot Prompting		: Multiple examples provided → AI follows the pattern.
+4. Role-Based Prompting		: Assign a specific role to AI → AI responds according to that role.
+5. Step-by-Step Prompting	: Provide or request ordered steps → AI explains or performs the task step by step.
+6. Chain-of-Thought (CoT) 	: Encourage logical reasoning through intermediate steps → AI works toward a solution.
+7. Contextual Prompting		: Provide background information or context → AI generates a relevant response.
+8. Instruction-Based Prompting	: Give clear instructions → AI follows the specified task requirements.
+9. Output-Based (Output-Format) : Specify the output format → AI responds as a table, JSON, list, etc.
+10. Negative Prompting		: Specify what AI should avoid or exclude → AI generates a response without those elements.
+
+
+Act as a **Senior Python Full-Stack Developer** and help me build an **Employee Management System** 
+using FastAPI, MySQL, HTML, CSS, and JavaScript. I am a beginner, 
+so explain the development process **step by step** with simple examples.
+The application should support adding, viewing, searching, updating, and deleting employees with fields 
+such as ID, Name, Age, Salary, and Designation. 
+
+	For example, `POST /employees` should add an employee, 
+	`GET /employees` should display all employees, and 
+	`DELETE /employees/{id}` should delete an employee. F
+ollow these examples to create the remaining APIs. Analyze the requirements, 
+explain the important design decisions, and provide a working solution. 
+Present the database structure and API endpoints in **table format**,
+ and provide the complete code file by file. Include input validation and error handling. 
+**Do not use** React, Angular, Django, SQLAlchemy, or complex programming logic. 
+Keep the application simple, attractive, and beginner-friendly.
+
+
+
+
+
+
+Zero-Shot: 
+		Build an Employee Management System using FastAPI and MySQL with CRUD operations.
+
+One-Shot: Example:
+	 GET /employees displays all employees. Now generate an API to get an employee by ID.
+
+Few-Shot: Examples: 
+	POST /employees → Add, GET /employees → View, DELETE /employees/{id} → Delete. Generate similar APIs for Update and Search.
+
+Role-Based: 
+	Act as a Senior Python Full-Stack Developer and build an Employee Management System using FastAPI, MySQL, HTML, CSS, and JavaScript.
+
+Step-by-Step: Explain step by step how to create the database, backend APIs, frontend, and connect everything.
+
+
+Chain-of-Thought: 
+	Analyze the employee management requirements, explain the key design decisions, and provide a working solution with validation.
+
+Contextual: 
+	I am a beginner learning FastAPI and MySQL. Help me build a simple Employee Management System suitable for my skill level.
+
+Instruction-Based: 
+	Create employee CRUD APIs with fields ID, Name, Age, Salary, and Designation. Include validation and error handling.
+
+Output-Format:
+	 Provide the Employee Management System database schema, API endpoints, and sample requests in table format.
+
+Negative Prompting: 
+	Build a simple Employee Management System. Do not use React, Angular, Django, SQLAlchemy, or complex logic.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

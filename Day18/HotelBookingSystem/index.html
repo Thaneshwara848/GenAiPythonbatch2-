@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StayEase | Hotel Management</title>
+  <style>
+    :root {
+      font-family: Inter, system-ui, Segoe UI, Arial, sans-serif;
+      color: #19253b;
+      background: #f3f6fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    header {
+      background: linear-gradient(115deg, #112946, #176b83);
+      padding: 27px max(24px, calc((100vw - 1200px)/2));
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 26px;
+      font-weight: 850;
+      letter-spacing: -.8px;
+    }
+
+    .brand span {
+      color: #7ee6cd;
+    }
+
+    .sub {
+      opacity: .76;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .live {
+      background: #ffffff25;
+      border: 1px solid #ffffff55;
+      border-radius: 25px;
+      padding: 9px 14px;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 1248px;
+      margin: 26px auto;
+      padding: 0 24px 36px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .metric,
+    .panel {
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #e5eaf2;
+      box-shadow: 0 5px 25px #1832570b;
+    }
+
+    .metric {
+      padding: 18px 20px;
+    }
+
+    .metric small {
+      color: #6e7a8f;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .metric strong {
+      font-size: 30px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 350px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 23px;
+      min-width: 0;
+    }
+
+    h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .hint {
+      margin: 0 0 21px;
+      color: #69768b;
+      font-size: 13px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 15px 0 6px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      background: #f9fbff;
+      border: 1px solid #d9e1ed;
+      border-radius: 9px;
+      font: inherit;
+      padding: 12px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #1c8b9a;
+      box-shadow: 0 0 0 3px #1c8b9a25;
+    }
+
+    button {
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      border: 0;
+      border-radius: 9px;
+      padding: 10px 13px;
+      transition: .15s;
+    }
+
+    button:hover {
+      filter: brightness(.93);
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .primary {
+      background: #147c8b;
+      color: white;
+      padding: 13px 16px;
+      width: 100%;
+      margin-top: 22px;
+    }
+
+    .secondary {
+      background: #ebf5f8;
+      color: #176276;
+    }
+
+    .danger {
+      background: #ffebed;
+      color: #a8223b;
+    }
+
+    .action {
+      color: #245272;
+      background: #eef3fa;
+      padding: 7px 9px;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .search {
+      max-width: 250px;
+      padding: 10px 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    th {
+      color: #68758a;
+      background: #f5f8fc;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    th,
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #e9eef5;
+      white-space: nowrap;
+    }
+
+    td strong {
+      font-weight: 750;
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 30px;
+      padding: 6px 9px;
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: .3px;
+    }
+
+    .BOOKED {
+      background: #e8f1ff;
+      color: #265eb2;
+    }
+
+    .CHECKED_IN {
+      background: #e5f8ef;
+      color: #137646;
+    }
+
+    .CHECKED_OUT {
+      background: #f0edf8;
+      color: #685691;
+    }
+
+    .CANCELLED {
+      background: #fff0ee;
+      color: #b54c43;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 5px;
+    }
+
+    .footer-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 18px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #notice {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: #14394f;
+      color: white;
+      max-width: 360px;
+      box-shadow: 0 10px 40px #0003;
+      display: none;
+      z-index: 10;
+    }
+
+    .chat-widget {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 20;
+      font-family: inherit;
+    }
+
+    .chat-toggle {
+      width: 58px;
+      height: 58px;
+      padding: 0;
+      border-radius: 50%;
+      color: white;
+      background: #147c8b;
+      box-shadow: 0 8px 24px #14394f40;
+      font-size: 24px;
+    }
+
+    .chat-panel {
+      position: absolute;
+      right: 0;
+      bottom: 72px;
+      display: flex;
+      flex-direction: column;
+      width: min(350px, calc(100vw - 32px));
+      height: min(430px, calc(100vh - 120px));
+      min-height: 300px;
+      overflow: hidden;
+      background: white;
+      border: 1px solid #dce5ed;
+      border-radius: 14px;
+      box-shadow: 0 14px 42px #102c4030;
+    }
+
+    .chat-panel[hidden] {
+      display: none;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 17px;
+      color: white;
+      background: #14394f;
+    }
+
+    .chat-header strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .chat-header small {
+      display: block;
+      margin-top: 3px;
+      color: #c6dce2;
+      font-size: 11px;
+    }
+
+    .chat-close {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      color: white;
+      background: #ffffff20;
+      font-size: 19px;
+    }
+
+    .chat-messages {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      padding: 16px;
+      background: #f5f8fa;
+    }
+
+    .chat-message {
+      max-width: 85%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: #263b4c;
+      background: white;
+      box-shadow: 0 1px 3px #18325712;
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .chat-message.user {
+      align-self: flex-end;
+      color: white;
+      background: #147c8b;
+    }
+
+    .chat-confirmation {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid #dce5ed;
+      border-radius: 10px;
+      background: white;
+      font-size: 12px;
+    }
+
+    .chat-confirmation p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .chat-confirmation-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-confirmation-actions button {
+      flex: 1;
+      padding: 8px;
+    }
+
+    .chat-form {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid #e5eaf2;
+    }
+
+    .chat-form input {
+      min-width: 0;
+      padding: 10px 11px;
+    }
+
+    .chat-send {
+      flex: 0 0 auto;
+      color: white;
+      background: #147c8b;
+    }
+
+    #notice.error {
+      background: #a92743;
+    }
+
+    .empty {
+      padding: 34px;
+      text-align: center;
+      color: #758195;
+    }
+
+    @media(max-width:900px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:500px) {
+      header {
+        padding: 22px;
+      }
+
+      main {
+        padding: 0 12px 24px;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+
+      .metric {
+        padding: 14px;
+      }
+
+      .live {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div>
+      <div class="brand">Stay<span>Ease</span> <span style="color:white;font-size:14px;font-weight:400">HOTEL</span>
+      </div>
+      <div class="sub">Reservations • Room allocation • Guest check-in</div>
+    </div>
+    <div class="live">● Front desk dashboard</div>
+  </header>
+  <main>
+    <div class="metrics">
+      <div class="metric"><small>Total bookings</small><strong id="total">0</strong></div>
+      <div class="metric"><small>Reserved</small><strong id="booked">0</strong></div>
+      <div class="metric"><small>Checked in</small><strong id="checkedIn">0</strong></div>
+      <div class="metric"><small>Checked out</small><strong id="checkedOut">0</strong></div>
+    </div>
+    <div class="workspace">
+      <section class="panel">
+        <h2 id="formTitle">New reservation</h2>
+        <p class="hint">Enter guest details to allocate a room.</p>
+        <form id="bookingForm">
+          <label for="customer_name">Customer name</label><input id="customer_name" required minlength="2"
+            maxlength="100" placeholder="e.g. Arun Kumar" />
+          <label for="room_number">Room number</label><input id="room_number" type="number" required min="1" max="9999"
+            placeholder="e.g. 204" />
+          <label for="room_type">Room type</label><select id="room_type">
+            <option>Single</option>
+            <option>Double</option>
+            <option>Deluxe</option>
+            <option>Suite</option>
+          </select>
+          <label for="amount">Amount (₹)</label><input id="amount" type="number" required min="0.01" max="10000000"
+            step="0.01" placeholder="e.g. 2500" />
+          <button type="submit" class="primary" id="submitBtn">+ Create booking</button>
+          <button type="button" class="secondary" id="resetBtn" style="width:100%;margin-top:9px">Clear form</button>
+        </form>
+      </section>
+      <section class="panel">
+        <div class="topline">
+          <div>
+            <h2>Booking records</h2>
+            <p class="hint" style="margin:4px 0 0">Manage stays and reservation status.</p>
+          </div><input class="search" id="search" placeholder="Search ID, name or room…" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Guest</th>
+                <th>Room</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="rows">
+              <tr>
+                <td colspan="7" class="empty">Loading bookings…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="footer-actions"><button class="secondary" id="refreshBtn">↻ Refresh</button><button class="danger"
+            id="deleteAllBtn">Delete all records</button></div>
+      </section>
+    </div>
+  </main>
+  <div id="notice" role="status" aria-live="polite"></div>
+  <aside class="chat-widget" aria-label="StayEase chat">
+    <section class="chat-panel" id="chatPanel" aria-label="Chat with StayEase" hidden>
+      <div class="chat-header">
+        <div><strong>StayEase booking agent</strong><small>Room reservations</small></div>
+        <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button>
+      </div>
+      <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+        <div class="chat-message">Hello! I can help create a room reservation. Tell me the guest name, room number, room type, and amount.</div>
+      </div>
+      <form class="chat-form" id="chatForm">
+        <input id="chatInput" aria-label="Type a message" placeholder="Type a message..." autocomplete="off" />
+        <button class="chat-send" id="chatSend" type="submit" aria-label="Send message">Send</button>
+      </form>
+    </section>
+    <button class="chat-toggle" id="chatToggle" type="button" aria-label="Open chat" aria-expanded="false">☏</button>
+  </aside>
+  <script>
+    const API = '/api/bookings';
+    let bookings = []; let editId = null;
+    const $ = id => document.getElementById(id);
+    const money = n => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(n);
+    function notify(message, isError = false) { const el = $('notice'); el.textContent = message; el.className = isError ? 'error' : ''; el.style.display = 'block'; clearTimeout(window.toastTimer); window.toastTimer = setTimeout(() => el.style.display = 'none', 4200); }
+    async function request(path = '', options = {}) {
+      let response;
+      try { response = await fetch(API + path, { ...options, headers: { 'Content-Type': 'application/json', ...(options.headers || {}) } }); }
+      catch { throw new Error('Cannot connect to FastAPI. Make sure the server is running.'); }
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) { let detail = payload.detail || 'Request failed'; if (Array.isArray(detail)) detail = detail.map(e => `${e.loc?.slice(-1)[0] || 'Field'}: ${e.msg}`).join('; '); throw new Error(detail); }
+      return payload;
+    }
+    function cell(text) { const td = document.createElement('td'); td.textContent = text; return td; }
+    function action(label, command, id, disabled = false) { const b = document.createElement('button'); b.className = 'action'; b.textContent = label; b.title = label; b.disabled = disabled; b.addEventListener('click', () => handleAction(command, id)); return b; }
+    function render() {
+      $('total').textContent = bookings.length; $('booked').textContent = bookings.filter(b => b.status === 'BOOKED').length; $('checkedIn').textContent = bookings.filter(b => b.status === 'CHECKED_IN').length; $('checkedOut').textContent = bookings.filter(b => b.status === 'CHECKED_OUT').length;
+      const q = $('search').value.trim().toLowerCase(); const filtered = bookings.filter(b => [b.booking_id, b.customer_name, b.room_number, b.room_type, b.status].some(x => String(x).toLowerCase().includes(q)));
+      const tbody = $('rows'); tbody.replaceChildren();
+      if (!filtered.length) { const tr = document.createElement('tr'); const td = cell('No bookings found'); td.colSpan = 7; td.className = 'empty'; tr.append(td); tbody.append(tr); return; }
+      for (const b of filtered) {
+        const tr = document.createElement('tr'); tr.append(cell('#' + b.booking_id), cell(b.customer_name), cell(b.room_number), cell(b.room_type), cell(money(b.amount)));
+        const statusTd = document.createElement('td'); const pill = document.createElement('span'); pill.className = 'pill ' + b.status; pill.textContent = b.status.replace('_', ' '); statusTd.append(pill); tr.append(statusTd);
+        const td = document.createElement('td'), row = document.createElement('div'); row.className = 'btn-row'; row.append(action('Room', 'room', b.booking_id, b.status !== 'BOOKED'), action('In', 'check-in', b.booking_id, b.status !== 'BOOKED'), action('Out', 'check-out', b.booking_id, b.status !== 'CHECKED_IN'), action('Cancel', 'cancel', b.booking_id, b.status !== 'BOOKED')); td.append(row); tr.append(td); tbody.append(tr);
+      }
+    }
+    async function refresh() { try { bookings = await request(); render(); } catch (e) { notify(e.message, true); } }
+    function resetForm() { editId = null; $('bookingForm').reset(); $('customer_name').disabled = false; $('amount').disabled = false; $('formTitle').textContent = 'New reservation'; $('submitBtn').textContent = '+ Create booking'; }
+    async function handleAction(command, id) {
+      try {
+        if (command === 'room') { const b = await request('/' + id); editId = id; $('customer_name').value = b.customer_name; $('room_number').value = b.room_number; $('room_type').value = b.room_type; $('amount').value = b.amount; $('customer_name').disabled = true; $('amount').disabled = true; $('formTitle').textContent = 'Change room · #' + id; $('submitBtn').textContent = 'Save room changes'; window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const labels = { 'check-in': 'Check in this guest?', 'check-out': 'Check out this guest?', 'cancel': 'Cancel this reservation?' };
+        if (!confirm(labels[command])) return;
+        await request('/' + id + '/' + command, { method: 'PATCH' }); notify('Booking #' + id + ' updated successfully'); await refresh();
+      } catch (e) { notify(e.message, true); }
+    }
+    $('bookingForm').addEventListener('submit', async e => {
+      e.preventDefault(); const room_number = Number($('room_number').value), room_type = $('room_type').value;
+      const path = editId ? '/' + editId + '/room' : ''; const body = editId ? { room_number, room_type } : { customer_name: $('customer_name').value.trim(), room_number, room_type, amount: Number($('amount').value) };
+      try { await request(path, { method: editId ? 'PUT' : 'POST', body: JSON.stringify(body) }); notify(editId ? 'Room updated successfully' : 'Booking created successfully'); resetForm(); await refresh(); } catch (err) { notify(err.message, true); }
+    });
+    $('resetBtn').addEventListener('click', resetForm); $('refreshBtn').addEventListener('click', refresh); $('search').addEventListener('input', render);
+    $('deleteAllBtn').addEventListener('click', async () => { if (!confirm('Permanently delete ALL bookings? This cannot be undone.')) return; try { const res = await request('', { method: 'DELETE' }); notify(res.deleted_count + ' records deleted'); resetForm(); await refresh(); } catch (e) { notify(e.message, true); } });
+
+    let chatHistory = [];
+    function addChatMessage(text, sender = '') {
+      const message = document.createElement('div');
+      message.className = 'chat-message' + (sender ? ' ' + sender : '');
+      message.textContent = text;
+      $('chatMessages').append(message);
+      $('chatMessages').scrollTop = $('chatMessages').scrollHeight;
+    }
+    function addBookingConfirmation(pending) {
+      const card = document.createElement('div');
+      card.className = 'chat-confirmation';
+      const booking = pending.booking;
+      const summary = document.createElement('p');
+      summary.textContent = `${booking.customer_name} · Room ${booking.room_number} (${booking.room_type}) · ${money(booking.amount)}`;
+      const actions = document.createElement('div');
+      actions.className = 'chat-confirmation-actions';
+      const confirmButton = document.createElement('button');
+      confirmButton.className = 'chat-send';
+      confirmButton.type = 'button';
+      confirmButton.textContent = 'Confirm booking';
+      const cancelButton = document.createElement('button');
+      cancelButton.className = 'secondary';
+      cancelButton.type = 'button';
+      cancelButton.textContent = 'Cancel';
+      confirmButton.addEventListener('click', async () => {
+        confirmButton.disabled = true;
+        cancelButton.disabled = true;
+        try {
+          const response = await fetch('/api/chat/confirm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: pending.token }),
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(payload.detail || 'Could not confirm this booking.');
+          card.remove();
+          addChatMessage(`Booking #${payload.booking.booking_id} is confirmed.`);
+          await refresh();
+        } catch (error) {
+          addChatMessage(error.message || 'Could not confirm this booking.');
+          confirmButton.disabled = false;
+          cancelButton.disabled = false;
+        }
+      });
+      cancelButton.addEventListener('click', async () => {
+        confirmButton.disabled = true;
+        cancelButton.disabled = true;
+        await fetch('/api/chat/confirm/' + encodeURIComponent(pending.token), { method: 'DELETE' });
+        card.remove();
+        addChatMessage('Reservation request cancelled.');
+      });
+      actions.append(confirmButton, cancelButton);
+      card.append(summary, actions);
+      $('chatMessages').append(card);
+      $('chatMessages').scrollTop = $('chatMessages').scrollHeight;
+    }
+    $('chatToggle').addEventListener('click', () => {
+      const isOpening = $('chatPanel').hidden;
+      $('chatPanel').hidden = !isOpening;
+      $('chatToggle').setAttribute('aria-expanded', String(isOpening));
+      if (isOpening) $('chatInput').focus();
+    });
+    $('chatClose').addEventListener('click', () => {
+      $('chatPanel').hidden = true;
+      $('chatToggle').setAttribute('aria-expanded', 'false');
+      $('chatToggle').focus();
+    });
+    $('chatForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      const text = $('chatInput').value.trim();
+      if (!text) return;
+      addChatMessage(text, 'user');
+      $('chatInput').value = '';
+      chatHistory.push({ role: 'user', content: text });
+      chatHistory = chatHistory.slice(-30);
+      $('chatSend').disabled = true;
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: chatHistory }),
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(payload.detail || 'Could not reach the chat service.');
+        addChatMessage(payload.reply);
+        if (payload.pending_confirmation) addBookingConfirmation(payload.pending_confirmation);
+        chatHistory.push({ role: 'assistant', content: payload.reply });
+        chatHistory = chatHistory.slice(-30);
+      } catch (error) {
+        addChatMessage(error.message || 'Could not reach the chat service.');
+      } finally {
+        $('chatSend').disabled = false;
+        $('chatInput').focus();
+      }
+    });
+    refresh();
+  </script>
+</body>
+
+</html>

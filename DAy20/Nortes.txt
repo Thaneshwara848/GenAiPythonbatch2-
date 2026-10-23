@@ -1,0 +1,82 @@
+LLM  : (large Lang model ) : its AI model trained on Large amount of text , data trainup ------Ack like Human 
+LLM 
+	----ASK question 
+			Text 
+			code 
+			notes---- Summary
+			doc
+			pdf 
+			xl 
+			audio/ vedio 
+			image 
+			etc.....!
+LLM : How its works :
+
+			1 ) User prompt  				: what is Python  ? 
+			2 ) Tokenization 				: converts into Chunks
+			3 ) Embeddings 					: HI-----> numerical Rep  
+			4 ) Transformer model 
+			5 ) Output Generate  
+						10000 tokens : 10000 : effective : 
+-----------------------------------------
+LLM : 						OPEN AI ,  ollama ,  
+	Token .
+	Tokenization 
+	Embedding 
+	transformer
+	Attention 
+	prompt 
+	Temperature :
+	Context Window  :
+	Hallucition 
+	Fine Tuning 
+-------------------------------------------------------------------------------
+RAG 
+		token 
+		Chunk 	
+		Embedding 
+		vectors 
+		Similarity search 
+		Semantic Search  
+-----------------------------------------------------
+Prompt Engineering		-----------------------> Role + Contact + task  + constraints  + output  + format + examples 
+			Types :
+				zero shot prompting
+				one shot prompting
+				few shot prompting
+				role based prompting
+				Chain of Thought prompting
+				Step by Step prompting
+				Contextual prompting 
+				Instruction based prompting
+				Output based prompting
+				negative prompting
+
+						
+----------------------------------------------------------------------------------
+n8n workflow 
+---------------------------------------------------------------------------------
+Single Agent 
+Tool calling 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	
+
+
+
+
+
+user text 										LLM 
+			HI : 0.45  								HI : 0.45---- what all similer answer ---0.46/0.47/0.48 

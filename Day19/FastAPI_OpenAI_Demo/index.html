@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#193a32">
+  <title>People | Fieldwork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172721;
+      --muted: #68766f;
+      --line: #dce5df;
+      --paper: #f3f6f1;
+      --white: #fff;
+      --forest: #193a32;
+      --green: #26725d;
+      --mint: #d9eee2;
+      --coral: #e7775b;
+      --gold: #e6bd62;
+      --shadow: 0 18px 55px #193a3214;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 0%, #e4f0e8 0, transparent 36rem),
+        var(--paper);
+      font-family: "DM Sans", "Segoe UI", sans-serif;
+      font-size: 14px;
+    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .topbar {
+      min-height: 72px;
+      padding: 0 max(24px, calc((100vw - 1180px) / 2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: white;
+      background: var(--forest);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .02em; }
+    .brand-mark {
+      width: 34px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--forest);
+      background: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 21px;
+    }
+    .topbar-note { color: #c5d6cd; font-size: 12px; }
+    main { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 52px 0 72px; }
+    .intro { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
+    .eyebrow { margin: 0 0 8px; color: var(--green); text-transform: uppercase; letter-spacing: .12em; font-size: 11px; font-weight: 700; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font: 500 42px/1.05 "Newsreader", Georgia, serif; letter-spacing: 0; }
+    .subhead { margin: 0; color: var(--muted); }
+    .primary-button {
+      min-height: 44px;
+      padding: 0 17px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 5px;
+      color: white;
+      background: var(--green);
+      font-weight: 700;
+      transition: background .15s ease, transform .15s ease;
+    }
+    .primary-button:hover { background: var(--forest); transform: translateY(-1px); }
+    .primary-button:focus-visible, .icon-button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid #e6bd62aa;
+      outline-offset: 2px;
+    }
+    .plus { font-size: 20px; line-height: 1; font-weight: 400; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 30px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffffb8;
+    }
+    .metric { min-height: 98px; padding: 19px 24px; }
+    .metric + .metric { border-left: 1px solid var(--line); }
+    .metric-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 12px; }
+    .metric-value { font: 600 27px/1 "Newsreader", Georgia, serif; }
+    .directory { overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: var(--white); box-shadow: var(--shadow); }
+    .directory-head {
+      min-height: 74px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .directory-title { margin: 0; font: 600 19px "Newsreader", Georgia, serif; }
+    .directory-count { margin-left: 8px; color: var(--muted); font-size: 12px; }
+    .filters { display: flex; align-items: center; gap: 9px; }
+    .search-wrap { position: relative; }
+    .search-icon { position: absolute; left: 12px; top: 10px; color: #718078; pointer-events: none; }
+    .search, .department-filter {
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--ink);
+      background: white;
+    }
+    .search { width: 230px; padding: 0 12px 0 35px; }
+    .department-filter { min-width: 145px; padding: 0 30px 0 10px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th { height: 42px; padding: 0 20px; color: #758079; background: #f8faf8; font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    td { height: 70px; padding: 10px 20px; border-top: 1px solid #edf1ee; vertical-align: middle; }
+    tbody tr { animation: rise .24s ease both; }
+    .person { display: flex; align-items: center; gap: 12px; min-width: 205px; }
+    .avatar { width: 38px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; color: #193a32; background: var(--mint); font-size: 12px; font-weight: 700; }
+    .person-name { display: block; margin-bottom: 3px; font-weight: 700; }
+    .person-email, .secondary { color: var(--muted); font-size: 12px; }
+    .department-tag { display: inline-block; padding: 5px 8px; border-radius: 3px; color: #26614d; background: #e7f3eb; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .salary { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .actions { display: flex; justify-content: flex-end; gap: 5px; white-space: nowrap; }
+    .icon-button { min-height: 32px; padding: 0 9px; border: 1px solid transparent; border-radius: 4px; color: var(--muted); background: transparent; font-size: 12px; }
+    .icon-button:hover { border-color: var(--line); color: var(--ink); background: #f8faf8; }
+    .icon-button.delete:hover { border-color: #f0cbc1; color: #aa4932; background: #fff5f2; }
+    .empty-state { padding: 62px 20px; text-align: center; }
+    .empty-mark { width: 46px; height: 46px; margin: 0 auto 14px; display: grid; place-items: center; border-radius: 50%; color: var(--forest); background: #e4f0e8; font: 25px Georgia, serif; }
+    .empty-state h2 { margin-bottom: 6px; font: 600 20px "Newsreader", Georgia, serif; }
+    .empty-state p { margin-bottom: 0; color: var(--muted); }
+    .status-line { min-height: 3px; background: var(--mint); }
+    .status-line.loading::after { content: ""; display: block; width: 35%; height: 3px; background: var(--coral); animation: load 1s ease-in-out infinite alternate; }
+    .toast { position: fixed; right: 22px; bottom: 22px; z-index: 5; max-width: min(420px, calc(100vw - 32px)); padding: 13px 17px; border-radius: 5px; color: white; background: var(--forest); box-shadow: var(--shadow); opacity: 0; transform: translateY(12px); pointer-events: none; transition: .2s ease; }
+    .toast.visible { opacity: 1; transform: translateY(0); }
+    .toast.error { background: #a74731; }
+    dialog { width: min(540px, calc(100% - 28px)); max-height: min(780px, calc(100% - 28px)); padding: 0; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); box-shadow: 0 24px 90px #10261c44; }
+    dialog::backdrop { background: #12241fcc; backdrop-filter: blur(2px); }
+    .dialog-head { padding: 22px 24px 17px; display: flex; justify-content: space-between; align-items: start; border-bottom: 1px solid var(--line); }
+    .dialog-head h2 { margin: 0 0 4px; font: 600 24px "Newsreader", Georgia, serif; }
+    .dialog-head p { margin: 0; color: var(--muted); font-size: 12px; }
+    .close-button { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); background: white; font-size: 20px; line-height: 1; }
+    .employee-form { padding: 20px 24px 22px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 13px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: #45554d; font-size: 12px; font-weight: 700; }
+    .field input { width: 100%; height: 40px; padding: 0 11px; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); background: white; }
+    .form-error { min-height: 18px; margin: 12px 0 0; color: #a74731; font-size: 12px; }
+    .form-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 16px; }
+    .secondary-button { min-height: 40px; padding: 0 15px; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); background: white; font-weight: 600; }
+    .secondary-button:hover { background: #f4f7f4; }
+    .primary-button:disabled { cursor: wait; opacity: .7; transform: none; }
+    .chat-launch {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 6;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      color: white;
+      background: var(--coral);
+      box-shadow: 0 8px 24px #193a3240;
+      transition: transform .16s ease, background .16s ease;
+    }
+    .chat-launch:hover { background: #cf6248; transform: translateY(-2px); }
+    .chat-launch svg { width: 25px; height: 25px; }
+    .chat-panel[hidden] { display: none; }
+    .chat-panel {
+      position: fixed;
+      right: 24px;
+      bottom: 96px;
+      z-index: 6;
+      width: min(370px, calc(100vw - 32px));
+      height: min(490px, calc(100dvh - 120px));
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: white;
+      box-shadow: 0 18px 60px #14291f40;
+      animation: rise .18s ease both;
+    }
+    .chat-head {
+      min-height: 66px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      background: var(--forest);
+    }
+    .chat-head strong { display: block; margin-bottom: 3px; font-size: 14px; }
+    .chat-head span { color: #c5d6cd; font-size: 11px; }
+    .chat-close { width: 32px; height: 32px; border: 0; border-radius: 4px; color: white; background: transparent; font-size: 22px; }
+    .chat-close:hover { background: #ffffff1c; }
+    .chat-messages { flex: 1; padding: 15px; display: flex; flex-direction: column; gap: 11px; overflow-y: auto; background: #f7faf7; }
+    .chat-message { max-width: 88%; padding: 10px 12px; border-radius: 10px; font-size: 13px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .chat-message.assistant { align-self: flex-start; border: 1px solid var(--line); border-bottom-left-radius: 3px; background: white; }
+    .chat-message.user { align-self: flex-end; border-bottom-right-radius: 3px; color: white; background: var(--green); }
+    .chat-compose { padding: 11px; display: flex; align-items: end; gap: 8px; border-top: 1px solid var(--line); background: white; }
+    .chat-compose textarea { min-height: 40px; max-height: 100px; flex: 1; resize: vertical; padding: 10px; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); font: inherit; font-size: 13px; }
+    .chat-send { min-height: 40px; padding: 0 13px; border: 0; border-radius: 4px; color: white; background: var(--green); font-size: 12px; font-weight: 700; }
+    .chat-send:hover { background: var(--forest); }
+    .chat-send:disabled { cursor: wait; opacity: .55; }
+    @keyframes rise { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes load { from { transform: translateX(0); } to { transform: translateX(185%); } }
+
+    @media (max-width: 720px) {
+      .topbar { min-height: 62px; padding: 0 20px; }
+      main { width: calc(100% - 32px); padding: 35px 0 48px; }
+      .intro { align-items: start; flex-direction: column; gap: 18px; margin-bottom: 24px; }
+      h1 { font-size: 36px; }
+      .metrics { margin-bottom: 20px; }
+      .metric { min-height: 82px; padding: 15px 12px; }
+      .metric-value { font-size: 23px; }
+      .directory-head { align-items: stretch; flex-direction: column; }
+      .filters { display: grid; grid-template-columns: minmax(0, 1fr) minmax(125px, .7fr); }
+      .search { width: 100%; }
+      .department-filter { min-width: 0; width: 100%; }
+      table { min-width: 770px; }
+    }
+    @media (max-width: 420px) {
+      .topbar-note { display: none; }
+      .metric { padding-inline: 9px; }
+      .metric-label { font-size: 10px; }
+      .metric-value { font-size: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .employee-form { padding: 17px; }
+      .dialog-head { padding-inline: 17px; }
+      .chat-launch { right: 16px; bottom: 16px; }
+      .chat-panel { right: 12px; bottom: 84px; width: calc(100vw - 24px); height: min(500px, calc(100dvh - 100px)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">f.</span><span>FIELDWORK <span style="font-weight:400;color:#c5d6cd">/ PEOPLE</span></span></div>
+    <span class="topbar-note">People operations</span>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Team directory</p>
+        <h1 id="page-title">People, at a glance.</h1>
+        <p class="subhead">Keep your employee records clear and up to date.</p>
+      </div>
+      <button class="primary-button" id="addEmployee" type="button"><span class="plus" aria-hidden="true">+</span> Add employee</button>
+    </section>
+
+    <section class="metrics" aria-label="Team summary">
+      <div class="metric"><span class="metric-label">Team members</span><strong class="metric-value" id="headcount">—</strong></div>
+      <div class="metric"><span class="metric-label">Departments</span><strong class="metric-value" id="departmentCount">—</strong></div>
+      <div class="metric"><span class="metric-label">Monthly payroll</span><strong class="metric-value" id="payroll">—</strong></div>
+    </section>
+
+    <section class="directory" aria-labelledby="directory-title">
+      <div class="status-line" id="statusLine" aria-hidden="true"></div>
+      <div class="directory-head">
+        <div><h2 class="directory-title" id="directory-title">All employees</h2><span class="directory-count" id="resultCount">Loading...</span></div>
+        <div class="filters">
+          <label class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input class="search" id="search" type="search" placeholder="Search people" aria-label="Search employees"></label>
+          <select class="department-filter" id="departmentFilter" aria-label="Filter by department"><option value="">All departments</option></select>
+        </div>
+      </div>
+      <div class="table-wrap" id="tableWrap">
+        <table>
+          <thead><tr><th scope="col">Employee</th><th scope="col">Department</th><th scope="col">Position</th><th scope="col">Monthly salary</th><th scope="col">Started</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+          <tbody id="employeeRows"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-mark" aria-hidden="true">+</div>
+        <h2 id="emptyTitle">Your directory starts here</h2>
+        <p id="emptyMessage">Add your first employee to get the team in one place.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="employeeDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-head">
+      <div><h2 id="dialogTitle">Add employee</h2><p id="dialogSubtitle">Add a new record to your team directory.</p></div>
+      <button class="close-button" id="closeDialog" type="button" aria-label="Close form">×</button>
+    </div>
+    <form class="employee-form" id="employeeForm">
+      <div class="form-grid">
+        <div class="field"><label for="name">Full name</label><input id="name" name="name" required minlength="2" maxlength="120" autocomplete="name"></div>
+        <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" required maxlength="254" autocomplete="email"></div>
+        <div class="field"><label for="department">Department</label><input id="department" name="department" required minlength="2" maxlength="100"></div>
+        <div class="field"><label for="position">Position</label><input id="position" name="position" required minlength="2" maxlength="120"></div>
+        <div class="field"><label for="phone">Phone <span class="secondary">(optional)</span></label><input id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel"></div>
+        <div class="field"><label for="salary">Monthly salary</label><input id="salary" name="salary" type="number" min="0" max="9999999999.99" step="0.01" required></div>
+        <div class="field full"><label for="hire_date">Start date <span class="secondary">(optional)</span></label><input id="hire_date" name="hire_date" type="date"></div>
+      </div>
+      <p class="form-error" id="formError" role="alert"></p>
+      <div class="form-actions">
+        <button class="secondary-button" id="cancelDialog" type="button">Cancel</button>
+        <button class="primary-button" id="saveEmployee" type="submit">Save employee</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <button class="chat-launch" id="chatToggle" type="button" aria-label="Open assistant" aria-expanded="false" aria-controls="chatPanel">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 11.4a7.6 7.6 0 0 1-8 7.3 8.8 8.8 0 0 1-3.5-.7L4 20l1.2-3.6A7 7 0 0 1 4 12.1a7.6 7.6 0 0 1 8-7.3 7.6 7.6 0 0 1 8 6.6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+  </button>
+  <section class="chat-panel" id="chatPanel" aria-label="Employee management assistant" hidden>
+    <div class="chat-head">
+      <div><strong>People assistant</strong><span>Guidance for your team workflows</span></div>
+      <button class="chat-close" id="chatClose" type="button" aria-label="Close assistant">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions text">
+      <div class="chat-message assistant">Hi! Ask me about employee management workflows or how to use this directory.</div>
+    </div>
+    <form class="chat-compose" id="chatForm">
+      <textarea id="chatPrompt" aria-label="Message the assistant" placeholder="Write a message..." rows="1" maxlength="4000" required></textarea>
+      <button class="chat-send" id="chatSend" type="submit">Send</button>
+    </form>
+  </section>
+
+  <script>
+    const state = { employees: [], editingId: null, toastTimer: null };
+    const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    const dialog = document.getElementById("employeeDialog");
+    const form = document.getElementById("employeeForm");
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[character]);
+    }
+
+    function initials(name) {
+      return name.trim().split(/\s+/).slice(0, 2).map(part => part[0]).join("").toUpperCase();
+    }
+
+    function dateLabel(value) {
+      if (!value) return "—";
+      return new Date(`${value}T12:00:00`).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+    }
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.toggle("error", isError);
+      toast.classList.add("visible");
+      clearTimeout(state.toastTimer);
+      state.toastTimer = setTimeout(() => toast.classList.remove("visible"), 3200);
+    }
+
+    async function request(url, options = {}) {
+      const response = await fetch(url, options);
+      if (response.status === 204) return null;
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.detail || "The request could not be completed.");
+      return data;
+    }
+
+    function render() {
+      const search = document.getElementById("search").value.trim().toLowerCase();
+      const departmentFilter = document.getElementById("departmentFilter").value;
+      const visible = state.employees.filter(employee => {
+        const searchable = `${employee.name} ${employee.email} ${employee.position}`.toLowerCase();
+        return (!search || searchable.includes(search)) && (!departmentFilter || employee.department === departmentFilter);
+      });
+      const departments = [...new Set(state.employees.map(employee => employee.department))].sort((a, b) => a.localeCompare(b));
+      const filter = document.getElementById("departmentFilter");
+      const previousDepartment = filter.value;
+      filter.innerHTML = '<option value="">All departments</option>' + departments.map(item => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join("");
+      filter.value = departments.includes(previousDepartment) ? previousDepartment : "";
+
+      document.getElementById("headcount").textContent = state.employees.length.toLocaleString();
+      document.getElementById("departmentCount").textContent = departments.length.toLocaleString();
+      document.getElementById("payroll").textContent = money.format(state.employees.reduce((sum, employee) => sum + Number(employee.salary), 0));
+      document.getElementById("resultCount").textContent = visible.length === state.employees.length
+        ? `${visible.length} ${visible.length === 1 ? "person" : "people"}`
+        : `${visible.length} of ${state.employees.length} people`;
+
+      const empty = visible.length === 0;
+      document.getElementById("tableWrap").hidden = empty;
+      document.getElementById("emptyState").hidden = !empty;
+      document.getElementById("emptyTitle").textContent = state.employees.length === 0 ? "Your directory starts here" : "No matching employees";
+      document.getElementById("emptyMessage").textContent = state.employees.length === 0
+        ? "Add your first employee to get the team in one place."
+        : "Try a different name or department filter.";
+      document.getElementById("employeeRows").innerHTML = visible.map((employee, index) => `
+        <tr style="animation-delay:${Math.min(index * 25, 200)}ms">
+          <td><div class="person"><span class="avatar" aria-hidden="true">${escapeHtml(initials(employee.name))}</span><span><strong class="person-name">${escapeHtml(employee.name)}</strong><span class="person-email">${escapeHtml(employee.email)}</span></span></div></td>
+          <td><span class="department-tag">${escapeHtml(employee.department)}</span></td>
+          <td>${escapeHtml(employee.position)}</td>
+          <td class="salary">${money.format(Number(employee.salary))}</td>
+          <td class="secondary">${escapeHtml(dateLabel(employee.hire_date))}</td>
+          <td><div class="actions"><button class="icon-button" type="button" data-action="edit" data-id="${employee.id}">Edit</button><button class="icon-button delete" type="button" data-action="delete" data-id="${employee.id}">Delete</button></div></td>
+        </tr>`).join("");
+    }
+
+    async function loadEmployees() {
+      const statusLine = document.getElementById("statusLine");
+      statusLine.classList.add("loading");
+      try {
+        state.employees = await request("/api/employees");
+        render();
+      } catch (error) {
+        showToast(error.message, true);
+        document.getElementById("resultCount").textContent = "Could not load employees";
+      } finally {
+        statusLine.classList.remove("loading");
+      }
+    }
+
+    function openForm(employee = null) {
+      state.editingId = employee?.id ?? null;
+      form.reset();
+      document.getElementById("formError").textContent = "";
+      document.getElementById("dialogTitle").textContent = employee ? "Edit employee" : "Add employee";
+      document.getElementById("dialogSubtitle").textContent = employee
+        ? "Update this employee's directory record."
+        : "Add a new record to your team directory.";
+      document.getElementById("saveEmployee").textContent = employee ? "Save changes" : "Save employee";
+      if (employee) {
+        for (const field of form.elements) {
+          if (field.name && employee[field.name] != null) field.value = employee[field.name];
+        }
+      }
+      dialog.showModal();
+      document.getElementById("name").focus();
+    }
+
+    document.getElementById("addEmployee").addEventListener("click", () => openForm());
+    document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
+    document.getElementById("cancelDialog").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+    document.getElementById("search").addEventListener("input", render);
+    document.getElementById("departmentFilter").addEventListener("change", render);
+
+    document.getElementById("employeeRows").addEventListener("click", async event => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;
+      const employee = state.employees.find(item => item.id === Number(button.dataset.id));
+      if (!employee) return;
+      if (button.dataset.action === "edit") {
+        openForm(employee);
+        return;
+      }
+      if (!window.confirm(`Remove ${employee.name} from the directory?`)) return;
+      try {
+        await request(`/api/employees/${employee.id}`, { method: "DELETE" });
+        await loadEmployees();
+        showToast("Employee removed.");
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const saveButton = document.getElementById("saveEmployee");
+      const payload = Object.fromEntries(new FormData(form).entries());
+      payload.salary = Number(payload.salary);
+      payload.phone = payload.phone || null;
+      payload.hire_date = payload.hire_date || null;
+      saveButton.disabled = true;
+      document.getElementById("formError").textContent = "";
+      try {
+        const editing = state.editingId !== null;
+        await request(editing ? `/api/employees/${state.editingId}` : "/api/employees", {
+          method: editing ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        dialog.close();
+        await loadEmployees();
+        showToast(editing ? "Employee details updated." : "Employee added.");
+      } catch (error) {
+        document.getElementById("formError").textContent = error.message;
+      } finally {
+        saveButton.disabled = false;
+      }
+    });
+
+    const chatPanel = document.getElementById("chatPanel");
+    const chatToggle = document.getElementById("chatToggle");
+    const chatPrompt = document.getElementById("chatPrompt");
+
+    function setChatOpen(isOpen) {
+      chatPanel.hidden = !isOpen;
+      chatToggle.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) chatPrompt.focus();
+      else chatToggle.focus();
+    }
+
+    function addChatMessage(text, sender) {
+      const message = document.createElement("div");
+      message.className = `chat-message ${sender}`;
+      message.textContent = text;
+      document.getElementById("chatMessages").appendChild(message);
+      message.scrollIntoView({ block: "end" });
+      return message;
+    }
+
+    chatToggle.addEventListener("click", () => setChatOpen(chatPanel.hidden));
+    document.getElementById("chatClose").addEventListener("click", () => setChatOpen(false));
+    chatPrompt.addEventListener("keydown", event => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        document.getElementById("chatForm").requestSubmit();
+      }
+    });
+    document.getElementById("chatForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      const prompt = chatPrompt.value.trim();
+      if (!prompt) return;
+      addChatMessage(prompt, "user");
+      chatPrompt.value = "";
+      const sendButton = document.getElementById("chatSend");
+      sendButton.disabled = true;
+      const pending = addChatMessage("Thinking...", "assistant");
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.detail || "The assistant could not respond.");
+        pending.textContent = data.answer || "No response returned.";
+      } catch (error) {
+        pending.textContent = `Error: ${error.message}`;
+      } finally {
+        sendButton.disabled = false;
+        chatPrompt.focus();
+      }
+    });
+
+    loadEmployees();
+  </script>
+</body>
+</html>

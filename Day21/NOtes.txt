@@ -1,0 +1,135 @@
+Prompt Engineering		-----------------------> Role + Contact + task  + constraints  + output  + format + examples 
+			Types :
+				zero shot prompting				----->   NO Examples 
+				one shot prompting                              ----->   Exactly one Example provide 
+				few shot prompting				----->   Multiple example 
+				role based prompting				----->   We assign a Role  
+				Step by Step prompting
+				Chain of Thought prompting
+				Contextual prompting 
+				Instruction based prompting
+				Output based prompting
+				negative prompting
+
+Prompt Engineering :
+	it is process of Designing and improving instruction (prompt) to get 
+		ACCURATE , RELEVENT , USEFULL , EFFICTIVE answer from AI models
+
+	Giving the CLEAR instruction to a AI to GET the DESIRED Output  
+
+
+Types :
+	Zero shot prompting :  NO Examples 
+		we expect the solution without giving any Examples 
+
+		Ex : 
+			What is Python ? 
+			translate Good Morning into kannada 
+			Python program to check wither a number is even or odd 
+			suggest five useful gifts for my Dad   within 5000 
+			
+			
+
+		AI Response : 
+			 	positive 
+
+		key point : 
+			zero Ex are provided 
+			only the task or instruction is given 
+			The AI use its pre trained knowledge 
+
+
+
+
+
+	one Shot  :  exactly one Example provide 
+			Apple is Fruit 
+			banana ? 
+
+
+			Carrot -> veg then potato is ? 
+			Dog - > animal , cat-- ? 
+			india-- > New Delhi , JAPAN -- > Tokyo 
+
+			caclualtion .....!
+
+
+
+--------------------------------------
+Zero-Shot: Just ask.
+		print hello World 
+		print("hello World ")
+
+
+		take some array number and fin the max 
+
+		number= [10,20,30,40,50 ]
+		print(max(number));
+
+		
+	
+One-Shot: Show one example, then ask.
+
+	
+Few-Shot: Show multiple examples, then ask.
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------
+role based prompting
+
+		we are assign the role to AI 
+			base on The ROLE , --- >answer 
+
+
+	Role + task  + context = Response 
+
+
+	
+---------------------------------------------------
+
+
+Step by Step prompting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
