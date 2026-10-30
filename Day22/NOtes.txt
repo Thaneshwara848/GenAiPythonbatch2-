@@ -129,22 +129,6 @@ Prompting Type	One-Line Explanation
 10. Negative Prompting		: Specify what AI should avoid or exclude → AI generates a response without those elements.
 
 
-Act as a **Senior Python Full-Stack Developer** and help me build an **Employee Management System** 
-using FastAPI, MySQL, HTML, CSS, and JavaScript. I am a beginner, 
-so explain the development process **step by step** with simple examples.
-The application should support adding, viewing, searching, updating, and deleting employees with fields 
-such as ID, Name, Age, Salary, and Designation. 
-
-	For example, `POST /employees` should add an employee, 
-	`GET /employees` should display all employees, and 
-	`DELETE /employees/{id}` should delete an employee. F
-ollow these examples to create the remaining APIs. Analyze the requirements, 
-explain the important design decisions, and provide a working solution. 
-Present the database structure and API endpoints in **table format**,
- and provide the complete code file by file. Include input validation and error handling. 
-**Do not use** React, Angular, Django, SQLAlchemy, or complex programming logic. 
-Keep the application simple, attractive, and beginner-friendly.
-
 
 
 
@@ -185,6 +169,23 @@ Negative Prompting:
 
 
 
+
+Act as a **Senior Python Full-Stack Developer** and help me build an **Employee Management System** 
+using FastAPI, MySQL, HTML, CSS, and JavaScript. I am a beginner, 
+so explain the development process **step by step** with simple examples.
+The application should support adding, viewing, searching, updating, and deleting employees with fields 
+such as ID, Name, Age, Salary, and Designation. 
+
+	For example, `POST /employees` should add an employee, 
+	`GET /employees` should display all employees, and 
+	`DELETE /employees/{id}` should delete an employee. 
+
+Fllows these examples to create the remaining APIs. Analyze the requirements, 
+explain the important design decisions, and provide a working solution. 
+Present the database structure and API endpoints in **table format**,
+ and provide the complete code file by file. Include input validation and error handling. 
+**Do not use** React, Angular, Django, SQLAlchemy, or complex programming logic. 
+Keep the application simple, attractive, and beginner-friendly.
 
 
 

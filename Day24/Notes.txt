@@ -1,0 +1,117 @@
+Types of LLM : 
+	GPT    --> open AI ---> Text gen / coding / reasoning , chat 
+			Model : 
+				GPT-6 Luna			1B
+				GPT-6.1 Terra			1.5
+				GPT-6.1 Sol			3
+				GPT-6 Astra			4B(fast + Accurate ) 
+	Llama  --> Meta   ----> free / we can download and we can use 
+	Gemini --> Google ---->multimode AI and reasoning
+	Claude --> Anthropic---> writing , Analysis  , coding  
+	Co-pilot 
+	source 								Destination 
+
+			BIKE 			--->
+			CAR 			--->
+				luxry car 	--->
+-------------------------------------
+A token does not have a fixed size.
+	It can contain one character, part of a word, an entire word, or even a sequence of words.
+
+Key point: Token size is not fixed at 4 characters or 1 word. 
+	The often-used approximation of 1 token ≈ 4 English characters is an average, not a tokenization rule.
+
+	1000 
+		5000 utilize  ? 
+			token Waste + money  + time + effort ===> AI (prompt Engg );		
+			Why prompt eng  ? 
+
+
+		giving --- but they also restricting / Limiting the tokens ...!
+				cost saving : 
+						U should the know the Prompt Eng properly ....!
+
+
+		some of the company : 
+					inform them to utilize more token ...!
+
+
+
+		Life Easy + time + effort + manuul usage + cost
+		Bank : 
+				amount dep + with+ acc ---- > employees--------------- solution : phone(maching --------> bank jobs lost 
+		post office	
+				letter ---- no psot : 		where isthe post man job ? 
+		Currency ? 
+				mobile services : 
+							------------------ job less 
+		train/ bus / flight tights --- Agents --------------------> onlinebooks ---------------- Job less 
+		Self drive car --------------------
+				driver --------- Driver less ------------ Driver job ? --------------- job less 
+				Flying car -------- > AI 
+				Coding -- manfully ------------ AI ---------------Robots+ AI ------------------ nam job ? ---------- job less 
+				Drone ----- Zomato / Swiiges ------- Delivery boys-------- tomorrows ----- Drowns 
+		Custom Care : 
+		DSA 
+
+				
+
+
+		GPT ASTRA----   6 
+
+				7
+				8 
+				9 -------------> jetski ------------ google from last 6 monthd : not even single line code : AI : 
+					100000 files : 
+				90%-- towards---- AI 
+---------------------------------------
+-----------------------------------------
+LLM : 						OPEN AI ,  ollama ,  
+	Token .
+				approx : 4 chat = 1 token 
+				token size is not fixed 
+				every model size diff cost 
+	Tokenization 
+
+	Temperature :
+				Lower temperature produces more predictable	 and focused responses,--------- 0.0
+				hile higher temperature increases diversity and creativity.		---------1.0 
+
+	Top -k : 
+				what is Python ? 
+				10 Answers 
+					top -1 
+				Top-K is a text-generation sampling technique that limits the AI model to the K most probable next tokens.
+
+				In simple words, Top-K tells the AI how many possible next tokens it can consider before selecting one.
+	Context Window  :
+
+
+	Embedding 
+	transformer
+	Attention 
+	prompt 
+	
+	Hallucition 
+	Fine Tuning 
+-------------------------------------------------------------------------------
+RAG 
+		token 
+		Chunk 	
+		Embedding 
+		vectors 
+		Similarity search 
+		Semantic Search  
+
+
+
+
+		OPEN AI -----------------> 
+					bring somthing to eat 
+									tok-4 
+								10 :
+										dose 								1 
+										
+								8 
+										
+

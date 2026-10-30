@@ -1,0 +1,11 @@
+pymupdf_git_branch = 'aptest-jules'
+pymupdf_git_comment = 'Revert "setup.py: require python<3.15 if we contain layout code."'
+pymupdf_git_diff = ''
+pymupdf_git_diff_n = None
+pymupdf_git_sha = '7db0ab090698d49de637046786c8f85f29d89fd2'
+mupdf_location = 'https://mupdf.com/downloads/archive/mupdf-1.28.5-source.tar.gz'
+pymupdf_version = '2.0'
+pymupdf_version_tuple = (2, 0)
+swig_version = '4.5.1'
+swig_version_tuple = (4, 5, 1)
+fake_no_gil = False
