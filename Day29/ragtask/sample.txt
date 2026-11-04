@@ -1,0 +1,6 @@
+Python is a programming language.
+FastAPI is used to develop REST APIs.
+RAG stands for Retrieval Augmented Generation.
+RAG retrieves information from documents.
+Embeddings convert text into numerical vectors.
+Vector databases store embeddings.

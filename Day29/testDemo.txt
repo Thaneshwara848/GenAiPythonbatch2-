@@ -1,0 +1,30 @@
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
+Answer: Document Loading is used to extract textual content from external files such as PDF, DOCX and TXT.
+ This extracted text is then divided into chunks, converted into embeddings, and indexed in a vector database for retrieval.
+Remember: Document Loading converts files into usable text. It does not create embeddings or train the LLM.
