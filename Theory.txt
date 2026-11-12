@@ -72,6 +72,49 @@ Data types:
 
 
 
+		sql  :Query lang 			Rag 
+		DB : info emp/ prod 			vectorDB
+			MySQL 					ChromeDB
+			oracle 					Pinecone	
+			mongoDb 				Qdrant
+			psstgrc					FAISS
+			ect....!				pgvector
+								Elasticsearch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
