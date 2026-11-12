@@ -1,0 +1,835 @@
+LLM  Fundamentals : 
+LLM : type of AI , and it trained  on large amount of text 
+		   and another data  too 
+		   and this will understand and generate the human like Language 
+LLM : 
+		is a AI Model  + 
+		this can understand our Question and generate answer in natural lang 
+	
+Types of LLM : 
+	GPT    --> open AI ---> Text gen / coding / reasoning , chat 
+		  --> versions					Approx cost 		Approx. INR
+			GPT-4.1 Nano------------------>		$0.0035			0.31
+			GPT-4.1 Mini------------------>		$0.0142			₹1.25
+												------ 
+												90%+ no color + 2 bm
+			GPT-4.1----------------------->		$0.0708			₹6.23
+			GPT-5.6 Luna------------------>		$0.0094			₹0.83
+												95 +  color full +  3 bm trainup
+			GPT-5.6 Sol------------------->		$0.1649			₹14.51
+												98 + attrcatcive_ color full + fast + 4 billons 
+
+	Llama  --> Meta   ----> free / we can download and we can use 
+	Gemini --> Google ---->multimode AI and reasoning
+	Claude --> Anthropic---> writing , Analysis  , coding  
+	Co-pilot 
+
+
+					
+			
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------- Ex ---------------------
+write a python program to add  2 number 
+read
+answer-
+program
+-----------------------------------------------------------------
+how its works 
+		step  1 :  user enter the a prompt  		What is Python ? 
+
+		Step  2 : Tokenization : 
+								input text is converter into tokens
+		Step 3 :   Model processing
+								transform neural network process 
+  
+		Step 4  : Token Prediction 			predict and generate the output token 
+
+		Step 5 : Final Response 			answer 
+
+LLM : 
+		it can answer our question 
+		it can generate the code / any lang 
+		it can translate lang 
+		it can summarize the document
+		it can write a email 
+		it can explain complex technical concept  
+		it can act as AI chat bot
+		it text----- convert----> audio/ video / image / pdf  
+-----------------------------------------------------------------------------------
+
+AI Developer :
+ 
+AI --- ML ---- DL ----- 
+			-----LLM ---->Gen AI(text , Audio , video , Report) ----> Agentic AI 
+
+
+vechical : 
+		Automatic car : 
+				AI -- ML -- 
+Hospital : 
+		AI : 
+			
+banking : 	AI/ --- > Chatbot ? , Fruaud Detection , FAceRec , , FIn Assistance  , report , 
+
+Eduction : 	AI/Ml --- >byjus--> perfo predict , Quiz ....> handwriing predit , perfo--> question paper 
+			
+		KEA --PDO , VA , KAS, UPSC , KPSC , KSP 
+		 
+	
+Agricatural : 	AI /Ml --- Smart ittigation ! , crop yield prediction  , plants Disease Detect , AI Farming 
+E commence 
+Automobiles 
+Cybersecurity 
+manufacturing 
+Entertainment 
+Transpiration 
+HR 	: 
+Real Estate 
+Customer Support 
+Software Developer 
+
+
+
+Kashmir 5-Day Trip Plan from Bengaluru\
+
+AI /ML / DL -----> LLM (Open/gemini / lama / etc....!)----> GenAI 
+GenAI ------------------------- > text , audio, vid , etc...!
+
+----------------------------------------prompt Engineering----------------------
+	Types : 
+		Zero Shot prompting
+		One Shot prompting 
+		few Shot prompting 
+		Role based prompting
+		Chain of Thought 
+		Constraint Based 
+		Step by Step prompting
+		Instruction Based prompting
+		Output based  prompting
+		negative prompting
+
+
+
+
+				Data Base ....!
+			MYSQL / oracle / MongoDB 
+
+popularity 			
+performance 	
+Cost 
+Security 
+Integrate 
+Readability 
+Vendor Support 
+
+
+------------------ ------------- keywords-----------------------------------
+
+prompt :A prompt is an 
+				instruction, question, or request given to an AI model 
+				(such as ChatGPT) to generate a response.
+
+				Prompt (Input) → AI Model (Processing) → Response (Output)
+
+				A good prompt usually contains four elements: Role + Context + Task + Expected Output.
+
+Prompting Type	One-Line Explanation
+		1. Zero-Shot Prompting	No examples provided → AI generates a response.
+		2. One-Shot Prompting	Exactly one example provided → AI follows the example.
+		3. Few-Shot Prompting	Multiple examples provided → AI follows the pattern.	
+		4. Role-Based Prompting	Assign a specific role → AI responds according to that role.
+		5. Chain-of-Thought (CoT)	Ask AI to reason through intermediate steps → AI solves a problem logically.
+		6. Constraint-Based Prompting	Specify rules or limitations → AI generates a response within those constraints.
+		7. Step-by-Step Prompting	Ask AI to explain a task in ordered steps → AI provides a sequential explanation.
+		8. Instruction-Based Prompting	Give clear instructions → AI performs the requested task.
+		9. Output-Based Prompting	Specify the output format → AI responds in JSON, table, list, etc.	
+		10. Negative Prompting	Specify what AI should avoid → AI excludes unwanted content.
+
+
+
+				
+-------------------------------------------------------------------------------------------------------
+
+Tokens			: 1  token = Equal to 4 char (Approximate )  
+				costing 
+
+
+GPT    --> open AI ---> Text gen / coding / reasoning , chat 
+		  --> versions					Approx cost 		Approx. INR
+			GPT-4.1 Nano------------------>		$0.0035			0.31
+			GPT-4.1 Mini------------------>		$0.0142			₹1.25
+												------ 
+												90%+ no color + 2 bm
+			GPT-4.1----------------------->		$0.0708			₹6.23
+			GPT-5.6 Luna------------------>		$0.0094			₹0.83
+												95 +  color full +  3 bm train up
+			GPT-5.6 Sol------------------->		$0.1649			₹14.51
+												98 + attractive_ color full + fast + 4 billons 
+
+
+Tokenization
+---------------------------------------------------------------------------------------------------------
+Temperature in LLM: A parameter that controls the randomness and creativity of AI-generated responses.		: 
+	Lower temperature produces more predictable outputs
+	Higher temperature increases variety and creativity.
+	
+	Low temperature (0–0.2): More predictable and consistent answers.
+	Medium temperature (0.3–0.6): Balance between consistency and creativity.
+	High temperature (0.7–1.0): More varied and creative answers.
+
+	Temperature	Behaviour				Example Use
+	0.0 – 0.2	More consistent and predictable		Coding, factual Q&A, technical answers
+	0.3 – 0.5	Balanced and focused			Chatbots, explanations
+	0.6 – 0.8	More creative and varied		Content writing, storytelling
+	0.9 – 1.0	Highly random and creative		Brainstorming, innovative ideas
+
+
+	1. Temperature selection guide
+	Temperature	When to use				Real-world example
+	0.0–0.2		High consistency			RAG, invoice extraction, login test regression
+	0.3–0.4		Consistency with slight variation	Functional test-case generation, code explanation
+	0.5–0.6		Balanced variation			Chatbots, training explanations
+	0.7–0.8		Creative responses			Marketing emails, storytelling
+	0.9–1.0		Broad idea exploration			Brainstorming, creative writing
+
+Top K : 
+	is a sampling technique that restricts the LLM to choosing its next token from the K most probable tokens.
+	Top-K decides how many of the highest-probability tokens an LLM can consider when generating its next token.
+Top-K	Allowed next tokens
+1	Car					token ---- cost kami 
+2	Car, Bus
+3	Car, Bus, Bike
+4	Car, Bus, Bike, Metro
+5	Car, Bus, Bike, Metro, Helicopter
+10	Car, Bus, Bike, Metro, Helicopter, Train, Taxi, Auto, Scooter, Bicycle
+
+
+context Window 
+----------------------------------------------------
+	Context Window is the maximum number of tokens that a Large Language Model (LLM) can process at one time, 
+	including the input prompt, conversation history, and generated response.
+
+Real-Time Example
+Imagine you're having a conversation with ChatGPT.
+1. You ask: "What is Python?"
+2. You ask: "What is FastAPI?"
+3. You ask: "Create an Employee Management Application."
+4. You ask: "Add MySQL integration."
+5. You ask: "Add validation to the previous code."
+
+
+	Context Window of 8,000 Tokens
+	Total Context Window	8,000 tokens
+	The general rule is:
+		Input Tokens + Output Tokens  <=  Context Window
+		2000         + 9000 	
+
+
+
+
+	CC : 
+		1 yeaes : 
+				every 3 days : data erase : 
+						
+
+				10000 : CW : 
+						  3 4 : 5 6
+
+------------------------------------------------------------------------------------------------
+Hallucination  : In simple terms: AI gives a confident answer, but the answer is wrong.
+
+Hallucination occurs when a Large Language Model (LLM) generates 
+	incorrect, misleading, or completely fabricated 
+	information and presents it as if it were true.
+
+
+
+
+1. Personal Information
+	Prompt: "What is Thanesh's height?"
+	Hallucinated Answer
+		"Thanesh's height is 5 feet 9 inches."
+	Correct Answer
+		"I don't know Thanesh's height because that information hasn't been provided."
+
+	Reason: AI invented personal information.
+
+2. Future Prediction
+	Prompt: "Who will be India's Prime Minister in 2029?"
+	
+	Hallucinated Answer
+		"Narendra Modi will definitely be the Prime Minister in 2029."
+	Correct Answer
+	"The result is unknown. It depends on future political developments and the electoral outcome."
+
+
+Reason: AI presented an uncertain future event as an established fact.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+Term	One-Line Explanation
+1. Prompt	The input or instruction given to an AI model to generate a response.
+2. Token	A small unit of text, such as a word, part of a word, or symbol, processed by an LLM.
+3. Tokenization	The process of breaking input text into smaller units called tokens.
+4. Temperature	Controls the randomness and creativity of an AI model's response.
+5. Top-K	Limits the model's next-token selection to the K most probable tokens.
+6. Context Window	The maximum number of tokens an LLM can process at one time, including input and output.
+7. Hallucination	When AI generates incorrect or fabricated information and presents it as factual.
+
+
+
+
+Temperature - Top-K - Context Window- Hallucination in LLM 
+
+fine tuning 
+Embedding 
+Transformer
+Attentions
+---------------------------------------------RAG : What ? why ? when ? advantage of RAG ? --------------------- Vibe code 
+	token 
+	Chunking 
+	embedding 
+	vectors 
+	Similarities Search 
+	Semantic Search  
+
+-------------------------n8n --------------------- 
+Automation--------- >
+----------------------------- Agentic AI -------------
+Single Agent
+Multiagent 
+MCP 
+Frameworks : lang Chain / lang graph 
+					best Prompt ----> AI 
+								Commination /
+								Accurately 
+
+1 ----- Accurent 
+1 --2 ---3 ---4 ---5 --- >Accurate Answer  ! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------
+RAG ----- gpt --code gen -JUST we saw output ---> 
+				How 
+		
+		Chunk 	Hi How are you ?
+		token 	:Hi How are you ?
+		Embedding ------->each token will converted to numerical values = Embedding
+		vectors 	-- embedding / vectors ----------> vector DB
+		Similarity search 
+		Semantic Search  
+
+
+
+
+
+
+
+FastAPI ------------->App output ------------> FastAPI 
+Chatbot-------> Explain 
+RAG---output---->
+			
+		Chunk 	Hi How are you ?
+		token 	:Hi How are you ?
+		Embedding ------->each token will converted to numerical values = Embedding
+		vectors 	-- embedding / vectors ----------> vector DB
+		Similarity search 
+		Semantic Search 
+
+
+
+# STEP 3: CHUNK TO EMBEDDING        chhunks ge number assign aguthe ...!  yar ? 
+def get_embedding(chunk):
+
+    response = client.embeddings.create(
+        model="text-embedding-3-small",
+        input=chunk
+    )
+
+    return response.data[0].embedding
+
+
+
+
+
+
+
+
+
+
+
+
+Embedding------------------> 
+
+	Model name	Default 	dimensions	Cost per 1M tokens	Usage	
+	text-embedding-3-small		1,536		$0.02			Small and medium RAG projects
+	text-embedding-3-large		3,072		$0.13			Higher-quality semantic search
+	text-embedding-ada-002		1,536		$0.10			Older embedding applications
+
+
+
+
+
+
+DoC ----------text-----Chunk --------------Embding -------------- vectors---------------vectors DB ----------------
+
+
+
+
+
+
+
+SQL : Qury lang 					vectorDB : to Store the vectors : where youare storing the vector  ? 
+										vectorDB : 
+												ChromaDB 
+										Database 										chromaDB 
+
+MSYQL DB : install 										
+oracle : use 											pinecone 
+mongoDB : 											FISSA
+
+
+
+
+
+AI ----- ML -----DL --------> GenAI
+				user --->prompt---- Response-----> utilization / implementation----------- Work 
+ 
+				user --->prompt----------------------------------------------------------------> Work  (Agents...!)
+
+
+
+
+
+
+Goal --!
+
+
+Goal---- > Planning-------> Tool calling --------> observation------> reason ---------->Action--------->Result 
+
+--------------------------
+LLM (Brain)-------------------------------------->
+tools ------------------------------------------> apis , database , search engin , applications 
+memory 
+planning 
+execute 
+feedback 
+Guardrails : enforce permission , validations , approvals requirement
+ 
+popular Agentic AI  Frameworks:		 
+	LangChain 
+	LangGraph 
+	CrewAi 
+	Autogen 
+	open Ai SDK 
+
+ROAD MAP : 
+
+		LLM Fundamentals
+		n8n 
+		Tool Calling
+		single Agent   
+		Memory and RAG 
+		Multiagent System 
+		MCP Server 
+		Agentic Ai Frameworks 
+		Project 
+
+FastAPi -- postman 
+		swagger 
+exception 
+validation 
+LLM 
+Chat bot 
+intelligent 
+	LLM 
+RAG : 
+	doc----text--- chunk ---- token ---- embedding --- vectors -- vector ---- > similarity --- sematic search 
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+n8n 
+Tool calling ----------------> 
+				Agents ----- > 
+						Single Agent  + n8n 
+						
+								
+				
+. What is Tool Calling?
+	Tool Calling (Function Calling)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# AI Prompt: Build a Full-Stack Employee Management System
+
+Act as a **Senior Python Full-Stack Developer, FastAPI Expert, MySQL Database Engineer, and Professional UI/UX Designer**.
+
+I want to build a complete, modern, responsive, and fully functional **Employee Management System** web application from scratch.
+
+I am learning full-stack development, so explain everything step by step with simple, beginner-friendly explanations.
+
+I will manually create the project files, copy the code, install the dependencies, configure MySQL, and run the application using VS Code on Windows.
+
+## 1. Technology Stack
+
+**Backend:**
+- Python 3.11+
+- FastAPI
+- Pydantic for data validation
+- MySQL Database
+- mysql-connector-python
+- REST APIs
+- HTTPException for error handling
+- Python logging
+- python-dotenv
+
+**Frontend:**
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
+- Fetch API for backend integration
+- Font Awesome icons
+- Modern responsive dashboard
+
+**Restrictions:**
+- Do not use React, Angular, Django, or SQLAlchemy.
+- Keep the code simple and beginner-friendly.
+- Use direct MySQL queries with parameterized SQL.
+- Provide complete runnable code without placeholders.
+
+## 2. Database Design
+
+Create a MySQL database named `employee_db`.
+
+Create an `employees` table with these fields:
+
+| Field | Data Type | Description |
+|---|---|---|
+| id | INT | Primary key, auto increment |
+| name | VARCHAR(100) | Employee full name |
+| age | INT | Employee age |
+| email | VARCHAR(150) | Unique email address |
+| phone | VARCHAR(15) | Contact number |
+| department | VARCHAR(100) | Employee department |
+| designation | VARCHAR(100) | Job title |
+| salary | DECIMAL(12,2) | Monthly salary |
+| joining_date | DATE | Joining date |
+| status | VARCHAR(20) | Active or Inactive |
+
+Provide the complete MySQL database creation script.
+
+## 3. Backend REST API Requirements
+
+Develop the following REST API endpoints using FastAPI:
+
+| Method | Endpoint | Functionality |
+|---|---|---|
+| GET | `/` | Application health message |
+| POST | `/employees` | Add a new employee |
+| GET | `/employees` | Display all employees |
+| GET | `/employees/{id}` | Search employee by ID |
+| PUT | `/employees/{id}` | Update employee details |
+| DELETE | `/employees/{id}` | Delete employee by ID |
+| DELETE | `/employees` | Delete all employees |
+| GET | `/employees/search` | Search employees by name |
+| GET | `/employees/department/{department}` | Filter by department |
+| GET | `/dashboard/stats` | Dashboard statistics |
+
+Ensure static routes such as `/employees/search` are defined before dynamic routes where required.
+
+All endpoints must connect to the MySQL database.
+
+## 4. Pydantic Validation
+
+Implement appropriate validation:
+
+- Employee name cannot be empty.
+- Age must be between 18 and 65.
+- Email must have a valid format.
+- Email must be unique.
+- Salary must be greater than zero.
+- Department and designation are mandatory.
+- Joining date must be a valid date.
+- Employee status must be Active or Inactive.
+
+Use Pydantic models and meaningful validation error messages.
+
+## 5. Exception Handling
+
+Implement proper error handling for:
+
+- Employee not found — HTTP 404.
+- Invalid input — HTTP 422.
+- Duplicate employee email — HTTP 409.
+- Database connection failures — HTTP 503.
+- Unexpected server errors — HTTP 500.
+
+Do not expose database credentials or sensitive exception details to the frontend.
+
+## 6. Frontend Requirements
+
+Build a visually attractive Employee Management Dashboard.
+
+The application should have:
+
+**Dashboard:**
+- Total Employees
+- Active Employees
+- Inactive Employees
+- Total Departments
+- Employee Table
+- Search Bar
+- Department Filter
+- Add Employee Button
+
+**Employee Management:**
+1. Add Employee
+2. View All Employees
+3. Search Employee
+4. Update Employee
+5. Delete Employee
+6. Filter by Department
+7. View Employee Details
+8. Refresh Employee List
+
+**UI Design:**
+- Professional sidebar navigation
+- Attractive dashboard cards
+- Modern employee table
+- Search and filtering
+- Add/Edit employee modal form
+- Confirmation popup before deleting
+- Success and error notifications
+- Loading indicators
+- Responsive layout for desktop and mobile
+- Clean typography and consistent spacing
+
+Use a professional blue, white, and dark-gray color theme.
+
+## 7. Frontend and Backend Integration
+
+Use JavaScript Fetch API to connect the frontend with FastAPI.
+
+Examples:
+
+- Submit Add Employee form → POST `/employees`
+- Load employee table → GET `/employees`
+- Edit employee → PUT `/employees/{id}`
+- Delete employee → DELETE `/employees/{id}`
+- Search employee → GET `/employees/search?name=...`
+- Load dashboard cards → GET `/dashboard/stats`
+
+Update the employee table and dashboard statistics automatically after successful CRUD operations without refreshing the browser.
+
+Handle network failures, validation errors, and server errors clearly.
+
+Render user-entered data safely to avoid HTML injection.
+
+## 8. Project Folder Structure
+
+Generate this simple project structure:
+
+```text
+EmployeeManagementSystem/
+│
+├── main.py
+├── index.html
+├── .env
+├── requirements.txt
+├── database.sql
+└── README.md
+```
+
+Keep the complete backend code in `main.py`.
+
+Keep HTML, CSS, and JavaScript together inside `index.html` for easier learning.
+
+## 9. Environment Configuration
+
+Use `.env` to store:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=employee_db
+```
+
+Never hardcode database credentials in Python.
+
+## 10. Step-by-Step Execution Guide
+
+Explain how to run this project on Windows using VS Code.
+
+Include:
+
+**Step 1:** Install Python and MySQL.
+
+**Step 2:** Create the project directory.
+
+**Step 3:** Create and activate a Python virtual environment.
+
+**Step 4:** Install dependencies using `requirements.txt`.
+
+**Step 5:** Create the MySQL database and table.
+
+**Step 6:** Configure the `.env` file.
+
+**Step 7:** Write and explain `main.py`.
+
+**Step 8:** Create the frontend in `index.html`.
+
+**Step 9:** Connect the frontend with FastAPI.
+
+**Step 10:** Run the FastAPI server.
+
+Use this command:
+
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+Access the application:
+
+```text
+http://127.0.0.1:8000
+```
+
+Access Swagger API documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+FastAPI should serve `index.html` at the root URL.
+
+## 11. Testing Requirements
+
+Provide sample employee data and test cases for:
+
+- Adding an employee
+- Displaying employees
+- Searching by ID
+- Updating employee details
+- Deleting an employee
+- Duplicate email validation
+- Invalid age validation
+- Searching for nonexistent employees
+- Database connection failure
+
+Explain expected API responses and status codes.
+
+## 12. Final Deliverables
+
+Generate the complete code for:
+
+1. `database.sql`
+2. `.env`
+3. `requirements.txt`
+4. `main.py`
+5. `index.html`
+6. `README.md`
+
+**Important Instructions:**
+
+- Do not provide incomplete code.
+- Do not skip any required functionality.
+- Do not use pseudocode.
+- Make sure all API routes match the frontend Fetch API calls.
+- Include proper MySQL connection and cursor cleanup.
+- Use parameterized queries to prevent SQL injection.
+- Ensure the application runs locally after configuration.
+- Explain each major code section in simple English.
+- Provide all commands needed for Windows.
+- Generate the project file by file, starting with database setup and backend, followed by frontend integration.
+
+**Final Goal:** Build a professional, 
+fully functional Employee Management System with FastAPI, MySQL, HTML, CSS, JavaScript, Pydantic validation, REST APIs, exception handling, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

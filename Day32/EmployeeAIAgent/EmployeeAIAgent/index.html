@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Employee AI Agent</title>
+<style>
+:root{font-family:Inter,Arial,sans-serif;color:#162239;background:#eff4fa}*{box-sizing:border-box}
+body{margin:0;padding:24px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}h1{font-size:25px;margin:0}p{color:#66768e;margin:6px 0}.tag{color:#116657;background:#dcf7ed;padding:7px 11px;border-radius:50px;font-size:12px;font-weight:700}.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;height:calc(100vh - 112px);min-height:460px}.panel{background:white;border:1px solid #e1e8f1;border-radius:16px;box-shadow:0 8px 24px #1d34500e;min-height:0;display:flex;flex-direction:column;overflow:hidden}.panelhead{display:flex;align-items:center;justify-content:space-between;padding:18px;border-bottom:1px solid #e7edf5}.panelhead h2{margin:0;font-size:17px}.refresh{border:1px solid #ccd8e7;background:white;color:#24466b;padding:8px 11px;border-radius:9px;cursor:pointer}.tablewrap{overflow:auto;flex:1}table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}th,td{padding:12px 13px;border-bottom:1px solid #e9edf5;white-space:nowrap}th{background:#f7f9fc;color:#5a708b;position:sticky;top:0}.chat{flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px}.bubble{max-width:88%;border-radius:13px;padding:12px 14px;font-size:14px;white-space:pre-wrap;line-height:1.5}.bot{background:#f1f5fa;align-self:flex-start}.user{background:#275ed5;color:white;align-self:flex-end}.controls{padding:12px 18px 18px;border-top:1px solid #e7edf5;display:flex;gap:8px}input{flex:1;min-width:0;border:1px solid #cbd6e4;border-radius:9px;padding:12px;font-size:14px}button{font:inherit;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.send,.yes{background:#275ed5;color:#fff;border:0;border-radius:9px;padding:12px 16px;font-weight:700}.approval{margin:0 18px 12px;border:1px solid #f0c773;border-radius:11px;background:#fffaea;padding:13px}.approval strong{color:#854e00}.approval pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}.actions{display:flex;gap:8px}.no{background:white;border:1px solid #cbd6e4;border-radius:9px;padding:10px 15px}.hint{padding:0 18px 12px;color:#66768e;font-size:12px}.empty{padding:18px;color:#66768e}.error{color:#b42318}@media(max-width:800px){body{padding:12px}.layout{height:auto;grid-template-columns:1fr}.panel{min-height:400px;height:55vh}header h1{font-size:20px}}
+</style>
+</head>
+<body>
+<header><div><h1>Employee Management AI Agent</h1><p>FastAPI + MySQL + OpenAI Function Calling</p></div><span class="tag">Single Agent</span></header>
+<main class="layout">
+<section class="panel"><div class="panelhead"><h2>Employees</h2><button class="refresh" onclick="loadEmployees()">Refresh</button></div><div class="tablewrap"><table><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Salary</th><th>Designation</th></tr></thead><tbody id="employeeRows"><tr><td colspan="5">Loading...</td></tr></tbody></table></div></section>
+<section class="panel"><div class="panelhead"><h2>Chat with Employee AI</h2><span class="tag">Tool Calling</span></div><div class="chat" id="chat"><div class="bubble bot">Hello! Ask me to list, add, update, or delete employees. Changes require your approval.</div></div><div id="approval" class="approval" hidden></div><div class="hint">Try: “Show all employees” or “Add employee 101, Ravi, age 25, salary 40000, Developer”.</div><form id="chatForm" class="controls"><input id="message" placeholder="Type your request..." required maxlength="2000" autocomplete="off" /><button id="send" class="send">Send</button></form></section>
+</main>
+<script>
+const sessionId = sessionStorage.getItem('employeeAgentSession') || crypto.randomUUID();
+sessionStorage.setItem('employeeAgentSession', sessionId);
+let pending = null;
+const chatBox = document.getElementById('chat');
+const msgInput = document.getElementById('message');
+const send = document.getElementById('send');
+const approval = document.getElementById('approval');
+function bubble(text, who='bot'){ const b=document.createElement('div'); b.className='bubble '+who; b.textContent=text; chatBox.appendChild(b); chatBox.scrollTop=chatBox.scrollHeight; }
+async function request(path, payload){
+ const resp=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+ const result=await resp.json().catch(()=>({}));
+ if(!resp.ok) throw new Error(typeof result.detail==='string'?result.detail:'Request failed');
+ return result;
+}
+function setBusy(busy){send.disabled=busy||!!pending;msgInput.disabled=busy||!!pending;send.textContent=busy?'Working...':'Send';}
+function renderPending(p){
+ pending=p;approval.replaceChildren();approval.hidden=!p;setBusy(false);
+ if(!p)return;
+ const title=document.createElement('strong');title.textContent='Confirmation required — '+p.operation.toUpperCase();
+ const details=document.createElement('pre');details.textContent=JSON.stringify(p.data,null,2);
+ const note=document.createElement('p');note.textContent='No change has been made. Approve only if the details are correct.';
+ const buttons=document.createElement('div');buttons.className='actions';
+ const yes=document.createElement('button');yes.className='yes';yes.textContent=p.operation==='delete_all'?'Yes, delete ALL':'Confirm change';
+ const no=document.createElement('button');no.className='no';no.textContent='Cancel';
+ yes.onclick=()=>approve(true);no.onclick=()=>approve(false);
+ buttons.append(yes,no);approval.append(title,details,note,buttons);
+}
+async function approve(accepted){
+ const current=pending;if(!current)return;
+ approval.querySelectorAll('button').forEach(b=>b.disabled=true);
+ try{const res=await request('/api/confirm',{session_id:sessionId,confirmation_token:current.confirmation_token,approve:accepted});renderPending(null);bubble(res.reply);await loadEmployees();}
+ catch(e){renderPending(null);bubble('Error: '+e.message);}
+}
+document.getElementById('chatForm').addEventListener('submit',async e=>{
+ e.preventDefault();const message=msgInput.value.trim();if(!message||pending)return;
+ msgInput.value='';bubble(message,'user');setBusy(true);
+ try{const res=await request('/api/chat',{session_id:sessionId,message});bubble(res.reply);renderPending(res.pending);}
+ catch(e){bubble('Error: '+e.message);}
+ finally{setBusy(false);}
+});
+async function loadEmployees(){
+ const tbody=document.getElementById('employeeRows');
+ try{const res=await fetch('/api/employees');if(!res.ok)throw Error('MySQL unavailable');const data=await res.json();tbody.replaceChildren();
+ if(!data.employees.length){const tr=document.createElement('tr');const td=document.createElement('td');td.colSpan=5;td.textContent='No employees found. Add one using chat.';tr.append(td);tbody.append(tr);return;}
+ for(const emp of data.employees){const tr=document.createElement('tr');for(const key of ['id','name','age','salary','desig']){const td=document.createElement('td');td.textContent=String(emp[key]??'');tr.append(td);}tbody.append(tr);}}
+ catch(e){tbody.replaceChildren();const tr=document.createElement('tr');const td=document.createElement('td');td.colSpan=5;td.className='error';td.textContent='Cannot load employees. Check MySQL and server logs.';tr.append(td);tbody.append(tr);}}
+loadEmployees();
+</script>
+</body>
+</html>

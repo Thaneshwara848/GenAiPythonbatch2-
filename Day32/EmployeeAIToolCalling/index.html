@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Employee AI Management</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 { text-align: center; color: #1e293b; }
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+button:disabled { opacity: 0.6; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+td, th {
+    padding: 9px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.chat {
+    grid-column: 1 / -1;
+}
+
+#chatOutput {
+    min-height: 100px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: #f8fafc;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 12px;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 750px) {
+    .container { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Employee Management with AI Tool Calling</h1>
+
+<div class="container">
+
+    <!-- EMPLOYEE FORM -->
+    <div class="card">
+        <h2>Add Employee</h2>
+
+        <form id="employeeForm">
+            <input id="id" type="number"
+                   placeholder="Employee ID" required min="1">
+
+            <input id="name" placeholder="Name" required>
+
+            <input id="age" type="number"
+                   placeholder="Age" required min="18" max="60">
+
+            <input id="salary" type="number" step="0.01"
+                   placeholder="Salary" required min="0.01">
+
+            <input id="desig"
+                   placeholder="Designation" required>
+
+            <button type="submit">Add Employee</button>
+        </form>
+        <p id="formMessage"></p>
+    </div>
+
+    <!-- EMPLOYEE LIST -->
+    <div class="card">
+        <h2>Employees</h2>
+
+        <button onclick="loadEmployees()">
+            Get All Employees
+        </button>
+
+        <input id="searchId" type="number"
+               placeholder="Search Employee ID">
+
+        <button onclick="searchEmployee()">
+            Get Employee By ID
+        </button>
+
+        <div style="overflow-x:auto">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Name</th>
+                        <th>Age</th><th>Salary</th>
+                        <th>Designation</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeRows"></tbody>
+            </table>
+        </div>
+        <p id="listMessage"></p>
+    </div>
+
+    <!-- AI CHAT -->
+    <div class="card chat">
+        <h2>AI Employee Assistant</h2>
+
+        <div id="chatOutput">Ask me about employees...</div>
+
+        <input id="question"
+               placeholder="Example: Show employee 101">
+
+        <button id="askButton" onclick="askAI()">
+            Ask AI
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+// Helper: HTTP request
+async function api(url, options = {}) {
+    const response = await fetch(url, options);
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            typeof data.detail === "string"
+                ? data.detail : JSON.stringify(data.detail)
+        );
+    }
+    return data;
+}
+
+
+// Display Employee Table
+function showEmployees(employees) {
+    const tbody = document.getElementById("employeeRows");
+    tbody.replaceChildren();
+
+    employees.forEach(emp => {
+        const row = document.createElement("tr");
+
+        [emp.id, emp.name, emp.age,
+         emp.salary, emp.desig].forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            row.appendChild(td);
+        });
+
+        tbody.appendChild(row);
+    });
+}
+
+
+// API 1: Get All Employees
+async function loadEmployees() {
+    const msg = document.getElementById("listMessage");
+
+    try {
+        const data = await api("/getAllEmployees");
+        showEmployees(data);
+        msg.textContent = data.length + " employees found";
+    } catch (error) {
+        msg.textContent = error.message;
+    }
+}
+
+
+// API 2: Get By ID
+async function searchEmployee() {
+    const id = document.getElementById("searchId").value;
+    const msg = document.getElementById("listMessage");
+
+    if (!id) {
+        msg.textContent = "Enter an employee ID";
+        return;
+    }
+
+    try {
+        const emp = await api("/getEmployeeById/" + id);
+        showEmployees([emp]);
+        msg.textContent = "Employee found";
+    } catch (error) {
+        showEmployees([]);
+        msg.textContent = error.message;
+    }
+}
+
+
+// API 3: Add Employee
+document.getElementById("employeeForm")
+    .addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const emp = {
+        id: Number(document.getElementById("id").value),
+        name: document.getElementById("name").value,
+        age: Number(document.getElementById("age").value),
+        salary: Number(document.getElementById("salary").value),
+        desig: document.getElementById("desig").value
+    };
+
+    const msg = document.getElementById("formMessage");
+
+    try {
+        const data = await api("/addEmployee", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(emp)
+        });
+
+        msg.textContent = data.message;
+        this.reset();
+        await loadEmployees();
+
+    } catch (error) {
+        msg.textContent = error.message;
+    }
+});
+
+
+// API 4: AI Tool Calling
+async function askAI() {
+
+    const questionInput = document.getElementById("question");
+    const output = document.getElementById("chatOutput");
+    const button = document.getElementById("askButton");
+
+    const question = questionInput.value.trim();
+
+    if (!question) return;
+
+    // Confirm AI requests that add or delete employee records
+    if (/^\s*(add|insert|create)\b/i.test(question)) {
+        if (!confirm("Allow AI to add this employee?")) {
+            return;
+        }
+    }
+    const deleteAll = /\b(delete|remove)\b.*\b(all|every)\b.*\b(employees?|employee records?)\b/i.test(question);
+    if (deleteAll) {
+        if (!confirm("Permanently delete all employee records? This cannot be undone.")) {
+            return;
+        }
+    } else if (/^\s*(delete|remove)\b/i.test(question)) {
+        if (!confirm("Allow AI to delete this employee?")) {
+            return;
+        }
+    }
+
+    button.disabled = true;
+    output.textContent = "You: " + question + "\n\nAI: Thinking...";
+
+    try {
+        const data = await api("/chat", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({question: question})
+        });
+
+        output.textContent =
+            "You: " + question + "\n\nAI: " + data.answer;
+
+        // Refresh table after any AI request
+        await loadEmployees();
+        questionInput.value = "";
+
+    } catch (error) {
+        output.textContent = "Error: " + error.message;
+    } finally {
+        button.disabled = false;
+    }
+}
+
+
+// Load employees when page opens
+loadEmployees();
+
+</script>
+
+</body>
+</html>
